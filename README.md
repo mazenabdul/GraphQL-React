@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Run npm install in order to download any necessary dependencies prior to running it locally using the commands below.
+The submission contains a series of tests. To run the test suite, run npm test.
 ## Available Scripts
 
 In the project directory, you can run:

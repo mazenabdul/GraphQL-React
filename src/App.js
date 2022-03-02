@@ -1,23 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import { FETCH_LOANS_QUERY } from './api/Queries/fetchLoansQuery';
+import { useQuery } from '@apollo/client';
 
-function App() {
+import PageHeader from './components/PageHeader/PageHeader';
+import LoanItem from './components/LoanItem/LoanItem'
+
+
+const App = () => {
+ 
+  const { data, error, loading } = useQuery(FETCH_LOANS_QUERY)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="pageTitle">
+        <PageHeader 
+          data-testid="header" 
+          title="Transportation" 
+          description="Loans for the transportation sector" />
+      </div>
+      <div className="resultsGroup">
+
+        { loading && <p data-testid='loading' >Loading...</p> }
+
+        { error && <div>We're having trouble fetching results...</div> }
+
+        { data && data.lend.loans.values.map((loanItem) => {
+          return <LoanItem 
+            key={loanItem.id}
+            name={loanItem.name} 
+            image={loanItem.image.url}
+            location={loanItem.geocode.country.name} 
+            reason={loanItem.whySpecial} 
+            loanAmount={loanItem.loanAmount} 
+            loanFundraisingInfo={loanItem.loanFundraisingInfo} />
+        })}
+      </div>
     </div>
   );
 }

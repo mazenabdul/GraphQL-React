@@ -1,0 +1,30 @@
+.pageHeaderContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.pageTitle {
+  font-size: 3.375rem;
+  letter-spacing: -.037037em;
+  font-family: Helvetica;
+  margin: 1.5rem;
+
+  
+}
+.pageDescription {
+  font-size: 2rem;
+  margin: 0 2rem;
+}
+
+@media only screen and (max-width: 414px){
+  .pageTitle {
+    font-size: 3rem;
+    text-align: center;
+    margin: 1.5rem 0;
+  }
+  .pageDescription {
+    font-size: 1.5rem;
+    margin: 0;
+    text-align: center;
+  }
+}
